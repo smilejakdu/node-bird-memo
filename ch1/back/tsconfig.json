@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["es2020"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "typeRoots": ["./types"]
+  }
+}

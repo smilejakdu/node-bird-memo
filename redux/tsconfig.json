@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": ".",
+    "strict": true,
+    "declaration": true,
+    "lib": ["dom", "es2020"],
+    "jsx": "react",
+    "esModuleInterop": true,
+    "moduleResolution": "node"
+  }
+}
