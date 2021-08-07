@@ -1,7 +1,10 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
-
+// 카카오 로그인 , 구글 로그인 등등 다양하게 많은데 
+// 이것들을 한꺼번에 관리해주는것이 있는게 그것이 passport 이다.
+// 그중에서 우리는 순수 nickname password 로 로그인하게되면
+// passport-local 을 설치해야한다.
 import { isLoggedIn, isNotLoggedIn } from './middleware';
 import User from '../models/user';
 import Post from '../models/post';

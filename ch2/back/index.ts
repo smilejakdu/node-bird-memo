@@ -1,12 +1,14 @@
 import express from 'express';
 import morgan from 'morgan';
-import cors from 'cors';
+import cors from 'cors'; // Access-Control-Allow-Origin
 import cookieParser from 'cookie-parser';
 import expressSession from 'express-session';
 import dotenv from 'dotenv';
-import passport from 'passport';
 import hpp from 'hpp';
 import helmet from 'helmet';
+
+import passport from 'passport';
+import passportConfig from './passport';
 
 import { sequelize } from './models';
 import userRouter from './routes/user';
@@ -26,11 +28,13 @@ sequelize.sync({ force: false })
   .catch((err: Error) => {
     console.error(err);
   });
-
+passportConfig();
 if (prod) {
   app.use(hpp());
   app.use(helmet());
   app.use(morgan('combined'));
+  // cors 를 모두 허용해주면 위험하다
+  // 테스트할때나 개발할때는 모르겠지만 나중에 배포하게 될땐 모두허용하게 되면 안된다.
   app.use(cors({
     origin: /nodebird\.com$/,
     credentials: true,
@@ -38,8 +42,8 @@ if (prod) {
 } else {
   app.use(morgan('dev'));
   app.use(cors({
-    origin: true,
-    credentials: true,
+    origin: true, // 지금은 테스트니깐 origin : true
+    credentials: true, // 
   }))
 }
 
